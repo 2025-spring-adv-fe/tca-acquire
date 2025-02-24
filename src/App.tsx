@@ -13,7 +13,7 @@ function App() {
       >
         TCA Acquire</h1>
       <button
-        className='btn btn-primary'
+        className='btn btn-secondary btn-soft'
       >
         Play Acquire</button>
     </div>
