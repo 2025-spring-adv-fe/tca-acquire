@@ -1,38 +1,49 @@
 import "./App.css";
+import {
+  HashRouter
+  , Routes
+  , Route
+} from 'react-router';
+import { Home } from './Home';
+import { Setup } from './Setup';
+import { Play } from './Play';
 
 
-interface AppProps {
-  timestamp: string;
-  magicNumber: number;
-}
 
-const App: React.FC<AppProps> = (
 
-  {
-  timestamp, 
-  magicNumber
-  }
-) => {
-
-  console.log(
-    "App Called 2"
-    // , typeof(props)
-    // , props
-  );
+const App = () => {
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold">TCA Acquire</h1>
+    <div
+      className='p-4'
+    >
+      <HashRouter>
+        <Routes>
+          <Route 
+            path='/'
+            element={
+              <Home />
+            }
+          />
 
-      <p>{timestamp} - {magicNumber}</p>
+          <Route 
+            path='/setup'
+            element={
+              <Setup />
+            }
+          />
 
-      <button 
-        className="btn btn-primary"
-      >
-        Play Acquire
-      </button>
+          <Route 
+            path='/play'
+            element={
+              <Play />
+            }
+          />    
+        </Routes>
+      </HashRouter>
     </div>
+
   );
-}; 
+};
 
 export default App;
