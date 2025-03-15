@@ -1,4 +1,4 @@
-import { useNavigate } from "../node_modules/react-router/dist/development/index";
+import { useNavigate } from "react-router";
 
  export const Home = () => {
 
