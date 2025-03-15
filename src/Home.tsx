@@ -1,4 +1,11 @@
+import { useNavigate } from "../node_modules/react-router/dist/development/index";
+
  export const Home = () => {
+
+  // Use a react hook for button navigation
+
+  const nav = useNavigate();
+
   return(
   <>
   <h3
@@ -6,7 +13,13 @@
   >
     Home
   </h3>
-  <button className="btn btn active btn-secondary btn-lg mt-4">Play Acquire</button>
+  <button 
+    className="btn btn active btn-secondary btn-lg mt-4"
+    onClick= {
+      () => nav("/setup")
+    }
+    >
+    Play Acquire</button>
   </>
   );
 };

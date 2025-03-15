@@ -20,7 +20,7 @@ const App = () => {
       <HashRouter>
         <Routes>
           <Route 
-            path='/'
+            path='/home'
             element={
               <Home />
             }
@@ -42,6 +42,7 @@ const App = () => {
         </Routes>
       </HashRouter>
     </div>
+
   );
 };
 
