@@ -11,7 +11,7 @@ interface PlayProps {
 
   const nav = useNavigate();
 
-  const [turnNumber, setTurnNumber] = useState(6);
+  const [turnNumber, setTurnNumber] = useState(1);
 
   return(
   <>
@@ -22,7 +22,7 @@ interface PlayProps {
   </h3>
 
   <h4 className="text-lg font-semibold">
-    Turn #{turnNumber}
+    Turn # {turnNumber}
     <button 
       className="btn btn xs-outline btn-light ml-4"
       onClick={
