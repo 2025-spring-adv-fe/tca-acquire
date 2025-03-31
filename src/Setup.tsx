@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
   <h3
     className='text-2xl font-bold'
   >
-    Setup
+    Setup (0 games played)
   </h3>
   <button 
     className="btn btn active btn-secondary btn-lg mt-4"
