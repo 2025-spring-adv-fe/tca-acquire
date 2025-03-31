@@ -1,7 +1,12 @@
 import { useNavigate } from "react-router";
 import { useState } from "react";
 
- export const Play = () => {
+
+interface PlayProps {
+  totalGameCount: number;
+}
+
+ export const Play: React.FC<PlayProps> = ({totalGameCount}) => {
 
   const nav3 = useNavigate();
 
@@ -12,7 +17,7 @@ import { useState } from "react";
   <h3
     className='text-2xl font-bold'
   >
-    Play (0 games played)
+    Play ({totalGameCount} games played)
   </h3>
 
   <h4 className="text-lg font-semibold">

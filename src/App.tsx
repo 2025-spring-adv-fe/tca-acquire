@@ -7,11 +7,16 @@ import {
 import { Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
+import { useState } from "react";
 
 
 
 
 const App = () => {
+
+
+  const [totalGameCount, setTotalGameCount] = useState(0);
+
 
   return (
     <div
@@ -22,21 +27,27 @@ const App = () => {
           <Route 
             path='/'
             element={
-              <Home />
+              <Home 
+                totalGameCount={totalGameCount}
+              />
             }
           />
 
           <Route 
             path='/setup'
             element={
-              <Setup />
+              <Setup 
+              totalGameCount={totalGameCount}
+              />
             }
           />
 
           <Route 
             path='/play'
             element={
-              <Play />
+              <Play 
+              totalGameCount={totalGameCount}
+              />
             }
           />    
         </Routes>
