@@ -4,11 +4,12 @@ import { useState } from "react";
 
 interface PlayProps {
   totalGameCount: number;
+  setTotalGameCount: (newValue: number) => void
 }
 
- export const Play: React.FC<PlayProps> = ({totalGameCount}) => {
+ export const Play: React.FC<PlayProps> = ({totalGameCount, setTotalGameCount}) => {
 
-  const nav3 = useNavigate();
+  const nav = useNavigate();
 
   const [turnNumber, setTurnNumber] = useState(6);
 
@@ -35,7 +36,10 @@ interface PlayProps {
   </h4>
   <button className="btn btn active btn-secondary btn-lg mt-4"
     onClick= {
-      () => nav3(-2)
+      () => {
+        setTotalGameCount(totalGameCount + 1)
+        nav(-2)
+      }
     }
   >
     Done</button>

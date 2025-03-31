@@ -6,7 +6,7 @@ interface SetupProps {
 
  export const Setup: React.FC<SetupProps> = ({totalGameCount}) => {
 
-  const nav2 = useNavigate();
+  const nav = useNavigate();
 
 
   return(
@@ -19,7 +19,7 @@ interface SetupProps {
   <button 
     className="btn btn active btn-secondary btn-lg mt-4"
     onClick= {
-      () => nav2("/play")
+      () => nav("/play")
     }
     >
       Start Playing</button>
