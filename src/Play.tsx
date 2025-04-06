@@ -1,12 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { GameResult } from "./GameResults";
 
 
 interface PlayProps {
   totalGameCount: number;
+  addNewGameResult: (r: GameResult) => void;
 }
 
- export const Play: React.FC<PlayProps> = ({totalGameCount}) => {
+ export const Play: React.FC<PlayProps> = ({
+  totalGameCount
+  , addNewGameResult
+}) => {
 
   const nav = useNavigate();
 
@@ -36,6 +41,13 @@ interface PlayProps {
   <button className="btn btn active btn-secondary btn-lg mt-4"
     onClick= {
       () => {
+        addNewGameResult({
+          winner: "Barbie"
+          , players: [
+            "Barbie"
+            , "Ken"
+          ]
+        })
         nav(-2)
       }
     }

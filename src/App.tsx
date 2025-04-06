@@ -61,7 +61,20 @@ const dummyGameResults: GameResult[] = [
 
 const App = () => {
 
-  const [gameResults, setGameResults] = useState(dummyGameResults);
+//
+// Hooks...
+//
+const [gameResults, setGameResults] = useState(dummyGameResults);
+
+//
+// Other (not hooks)...
+//
+const addNewGameResult = (newGameResult: GameResult) => setGameResults(
+  [
+    ...gameResults
+    , newGameResult
+  ]
+);
 
 
   return (
@@ -96,6 +109,7 @@ const App = () => {
             element={
               <Play 
               totalGameCount={gameResults.length}
+              addNewGameResult={addNewGameResult}
               />
             }
           />    
