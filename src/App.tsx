@@ -7,11 +7,76 @@ import {
 import { Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
+import { useState } from "react";
+import { GameResult, getLeaderboard } from "./GameResults";
 
 
-
+const dummyGameResults: GameResult[] = [
+  {
+      winner: "Hermione"
+      , players: [
+          "Hermione"
+          , "Harry"
+          , "Ron"
+      ]
+    
+  }
+  , {
+      winner: "Ron"
+      , players: [
+          "Hermione"
+          , "Ron"
+      ]
+  }
+  , {
+      winner: "Larry"
+      , players: [
+          "Larry"
+          , "Curly"
+          , "Moe"
+      ]
+  }
+  , {
+      winner: "Harry"
+      , players: [
+          "Curly"
+          , "Harry"
+      ]
+  }
+  , {
+      winner: "Ron"
+      , players: [
+          "Ron"
+          , "Voldemort"
+      ]
+  }
+  , {
+      winner: "Voldemort"
+      , players: [
+          "Ron"
+          , "Voldemort"
+      ]
+  }
+];
 
 const App = () => {
+
+//
+// Hooks...
+//
+const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+//const [gameResults, setGameResults] = useState<GameResult[]>([]);
+
+//
+// Other (not hooks)...
+//
+const addNewGameResult = (newGameResult: GameResult) => setGameResults(
+  [
+    ...gameResults
+    , newGameResult
+  ]
+);
+
 
   return (
     <div
@@ -22,21 +87,31 @@ const App = () => {
           <Route 
             path='/'
             element={
-              <Home />
+              <Home 
+                totalGameCount={gameResults.length}
+                leaderboardData={
+                  getLeaderboard(gameResults)
+                }
+              />
             }
           />
 
           <Route 
             path='/setup'
             element={
-              <Setup />
+              <Setup 
+              totalGameCount={gameResults.length}
+              />
             }
           />
 
           <Route 
             path='/play'
             element={
-              <Play />
+              <Play 
+              totalGameCount={gameResults.length}
+              addNewGameResult={addNewGameResult}
+              />
             }
           />    
         </Routes>
