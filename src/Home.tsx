@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { LeaderboardEntry } from "./GameResults";
+import React from "react";
 
 interface HomeProps {
     totalGameCount: number;
@@ -10,7 +11,6 @@ export const Home: React.FC<HomeProps> = ({
     totalGameCount,
     leaderboardData,
 }) => {
-    console.log(leaderboardData);
 
     // Use a react hook for button navigation
 

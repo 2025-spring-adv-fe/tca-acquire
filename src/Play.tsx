@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { GameResult } from "./GameResults";
+import React from "react";
 
 
 interface PlayProps {
