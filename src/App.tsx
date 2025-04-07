@@ -81,8 +81,14 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
 
   return (
     <div
-      className='p-4'
+      className='p-0'
     >
+      <div className="navbar bg-base-300 shadow-lg">
+        <h1 className="text-xl font-bold">
+          Acquire
+        </h1>
+      </div>
+      <div className="p-4">
       <HashRouter>
         <Routes>
           <Route 
@@ -117,8 +123,8 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
           />    
         </Routes>
       </HashRouter>
+      </div>
     </div>
-
   );
 };
 
