@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import { useEffect } from "react";
 
 interface SetupProps {
   setTitle: (t: string) => void;
@@ -9,7 +10,10 @@ export const Setup: React.FC<SetupProps> = ({
   setTitle
 }) => {
 
-  setTitle("Setup");
+  useEffect(
+    () => setTitle("Setup")
+    , []
+  );
 
 
     const nav = useNavigate();

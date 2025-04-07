@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import { LeaderboardEntry } from "./GameResults";
-import React from "react";
+import React, { useEffect } from "react";
 
 export const AppTitle = "Acquire Companion App"
 
@@ -14,7 +14,11 @@ export const Home: React.FC<HomeProps> = ({
     setTitle
 }) => {
 
-  setTitle(AppTitle);
+  useEffect(
+    () => setTitle(AppTitle)
+    , []
+  );
+
     // Use a react hook for button navigation
 
     const nav = useNavigate();
