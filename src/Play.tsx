@@ -6,11 +6,15 @@ import React from "react";
 
 interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
+  setTitle: (t: string) => void;
 }
 
  export const Play: React.FC<PlayProps> = ({
-  addNewGameResult
+  addNewGameResult,
+  setTitle
 }) => {
+
+  setTitle("Play")
 
   const nav = useNavigate();
 
