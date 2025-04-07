@@ -5,13 +5,11 @@ import React from "react";
 
 
 interface PlayProps {
-  totalGameCount: number;
   addNewGameResult: (r: GameResult) => void;
 }
 
  export const Play: React.FC<PlayProps> = ({
-  totalGameCount
-  , addNewGameResult
+  addNewGameResult
 }) => {
 
   const nav = useNavigate();
@@ -20,12 +18,6 @@ interface PlayProps {
 
   return(
   <>
-  <h3
-    className='text-2xl font-bold'
-  >
-    Play ({totalGameCount} games played)
-  </h3>
-
   <h4 className="text-lg font-semibold">
     Turn # {turnNumber}
     <button 
