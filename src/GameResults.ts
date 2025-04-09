@@ -15,6 +15,13 @@ export interface LeaderboardEntry {
   player: string;
 };
 
+export interface GeneralFacts {
+  lastPlayed: string,
+  totalGames: number,
+  shortestGame: string,
+  longestGame: string
+}
+
 //
 // Exported Functions...
 //
@@ -46,6 +53,35 @@ export const getLeaderboard = (
               return Number(b.average) - Number(a.average);
           }
       );
+
+
+
+export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
+
+  // calcs for last lastPlayed
+  const now = Date.now();
+  const gameEndTimesInMilliseconds = results.map(
+      x => now - Date.parse(x.end)
+  );
+
+
+  const lastPlayedInMilliseconds = Math.min(...gameEndTimesInMilliseconds);
+
+  console.log(gameEndTimesInMilliseconds);
+
+  // calcs for shortest/longestGame
+  const gameDurationsInMilliseconds = results.map(
+      x => Date.parse(x.end) - Date.parse(x.start)
+  );
+
+  return {
+      lastPlayed: `${lastPlayedInMilliseconds / 1000 / 60 / 60 /24} days ago`,
+      totalGames: 2,
+      shortestGame: `${Math.min(...gameDurationsInMilliseconds) / 1000 / 60 } minutes`,
+      longestGame: `${Math.max(...gameDurationsInMilliseconds) / 1000 / 60 } minutes`
+  }
+
+};
 
 //
 // Helper Functions...
