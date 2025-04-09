@@ -23,6 +23,10 @@ interface PlayProps {
 
   const [turnNumber, setTurnNumber] = useState(1);
 
+  const [startTimestamp] = useState(
+    new Date().toISOString()
+  )
+
   return(
   <>
   <h4 className="text-lg font-semibold">
@@ -47,6 +51,8 @@ interface PlayProps {
             "Barbie"
             , "Ken"
           ]
+          ,start: startTimestamp
+          , end: new Date().toISOString()
         })
         nav(-2)
       }
