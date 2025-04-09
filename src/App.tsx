@@ -9,7 +9,6 @@ import { Setup } from './Setup';
 import { Play } from './Play';
 import { useState } from "react";
 import { GameResult, getLeaderboard } from "./GameResults";
-import React from "react";
 
 
 const dummyGameResults: GameResult[] = [
