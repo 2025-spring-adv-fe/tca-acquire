@@ -19,7 +19,10 @@ const dummyGameResults: GameResult[] = [
           , "Harry"
           , "Ron"
       ]
-    
+          , start: "2025-04-01T19:20:49.248Z"
+          , end: "2025-04-01T19:40:49.248Z"
+
+      
   }
   , {
       winner: "Ron"
@@ -27,35 +30,8 @@ const dummyGameResults: GameResult[] = [
           "Hermione"
           , "Ron"
       ]
-  }
-  , {
-      winner: "Larry"
-      , players: [
-          "Larry"
-          , "Curly"
-          , "Moe"
-      ]
-  }
-  , {
-      winner: "Harry"
-      , players: [
-          "Curly"
-          , "Harry"
-      ]
-  }
-  , {
-      winner: "Ron"
-      , players: [
-          "Ron"
-          , "Voldemort"
-      ]
-  }
-  , {
-      winner: "Voldemort"
-      , players: [
-          "Ron"
-          , "Voldemort"
-      ]
+      , start: "2025-04-01T19:20:49.248Z"
+      , end: "2025-04-01T19:50:49.248Z"
   }
 ];
 
