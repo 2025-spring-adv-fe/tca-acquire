@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { LeaderboardEntry } from "./GameResults";
+import { GeneralFacts, LeaderboardEntry } from "./GameResults";
 import React, { useEffect } from "react";
 
 export const AppTitle = "Acquire Companion App"
@@ -7,12 +7,18 @@ export const AppTitle = "Acquire Companion App"
 interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
+    generalFacts: GeneralFacts;
 }
 
 export const Home: React.FC<HomeProps> = ({
     leaderboardData,
     setTitle
+    , generalFacts
 }) => {
+
+  console.log(
+    generalFacts
+  );
 
   useEffect(
     () => setTitle(AppTitle)

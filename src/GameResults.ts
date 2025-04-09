@@ -75,8 +75,6 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
 
   const lastPlayedInMilliseconds = Math.min(...gameEndTimesInMilliseconds);
 
-  console.log(gameEndTimesInMilliseconds);
-
   // calcs for shortest/longestGame
   const gameDurationsInMilliseconds = results.map(
       x => Date.parse(x.end) - Date.parse(x.start)
