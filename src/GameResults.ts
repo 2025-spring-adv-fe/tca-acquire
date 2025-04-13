@@ -6,6 +6,10 @@ const formatLastPlayed = durationFormatter<string>({
   allowMultiples: ["y", "mo", "d"]
 });
 
+
+
+
+
 //
 // Exported interfaces...
 //
@@ -29,6 +33,10 @@ export interface GeneralFacts {
   shortestGame: string,
   longestGame: string
 }
+
+
+
+
 
 //
 // Exported Functions...
@@ -98,6 +106,25 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
 
 };
 
+
+export const getPreviousPlayers = (
+  results: GameResult[]
+) => {
+  const allPlayersForAllGamesWithDupes = results.flatMap(
+      x => x.players
+  );
+
+  return [
+      ...new Set(allPlayersForAllGamesWithDupes)
+  ].sort(
+      (a, b) => a.localeCompare(b)
+  );
+};
+
+
+
+
+
 //
 // Helper Functions...
 //
@@ -127,18 +154,4 @@ const getLeaderboardEntry = (
       , average: avg.toFixed(3)
       , player: player
   };
-};
-
-const getPreviousPlayers = (
-  results: GameResult[]
-) => {
-  const allPlayersForAllGamesWithDupes = results.flatMap(
-      x => x.players
-  );
-
-  return [
-      ...new Set(allPlayersForAllGamesWithDupes)
-  ].sort(
-      (a, b) => a.localeCompare(b)
-  );
 };
