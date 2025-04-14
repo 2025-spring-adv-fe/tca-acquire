@@ -44,14 +44,16 @@ interface PlayProps {
       +
     </button>
   </h4>
-  
+
   <div 
     className="grid grid-cols2 gap-2 mt-4"
   >
     {
       currentPlayers.map(
         x => (
-          <button className="btn btn active btn-secondary btn-lg mt-4"
+          <button 
+            key={x}
+            className="btn btn active btn-secondary btn-lg mt-4"
             onClick= {
               () => {
                 addNewGameResult({
