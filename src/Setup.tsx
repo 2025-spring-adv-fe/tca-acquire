@@ -36,6 +36,8 @@ export const Setup: React.FC<SetupProps> = ({
       )
     )
 
+    const [newPlayerName, setNewPlayerName] = useState("");
+
 
     //
     // Other code, for example derived state and other calcs...
@@ -43,6 +45,34 @@ export const Setup: React.FC<SetupProps> = ({
 
     const numberOfChosenPlayers = availablePlayers.filter(x=> x.checked).length;
     const twoToSevenPlayersChosen = numberOfChosenPlayers>= 2 && numberOfChosenPlayers <= 7;
+
+    const duplicatePlayerName = availablePlayers.some(
+      x => x.name.toUpperCase() === newPlayerName.toUpperCase()
+    );
+
+    const validateAndAddNewPlayer = () => {
+
+      // Bail if invalid...
+      if (newPlayerName.length === 0
+          || duplicatePlayerName
+        ) {
+        return;
+      }
+
+      setAvailablePlayers(
+        [
+          ...availablePlayers
+          , {
+            name: newPlayerName
+            , checked: true
+          }
+        ].sort(
+          (a, b) => a.name.toUpperCase().localeCompare(b.name.toUpperCase())
+        )
+      );
+
+      setNewPlayerName("");
+    };
 
 
 
@@ -74,6 +104,29 @@ export const Setup: React.FC<SetupProps> = ({
                   : "Choose 2-7 Players"
                 }
             </button>
+
+            <div 
+              className="mt-4 flex"
+            >
+              <input 
+                type="text" 
+                placeholder="Enter player name here" 
+                className={`input ${duplicatePlayerName ? "input-error" : ""}`}
+                value={newPlayerName}
+                onChange={
+                  (e) => setNewPlayerName(e.target.value)
+                }
+              />
+              <button 
+                className="btn btn-outline btn-neutral ml-2"
+                onClick={
+                  validateAndAddNewPlayer
+                }
+              >
+                Add Player
+              </button>
+            </div>
+
             <div
               className="mt-4"
             >
