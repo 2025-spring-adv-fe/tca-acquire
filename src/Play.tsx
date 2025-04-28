@@ -61,6 +61,7 @@ interface PlayProps {
                   , players: currentPlayers
                   ,start: startTimestamp
                   , end: new Date().toISOString()
+                  , turnCount: turnNumber
                 });
                 nav(-2)
               }
