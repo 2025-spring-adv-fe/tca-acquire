@@ -7,7 +7,8 @@ import {
 import { AppTitle, Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import localforage from "localforage";
 import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers } from "./GameResults";
 
 
@@ -50,6 +51,23 @@ const [currentPlayers, setCurrentPlayers] = useState<string[]>(["Barbie", "Ken"]
 
 const [darkMode, setDarkMode] = useState(false);
 
+useEffect(() => {
+  let ignore = false; // top bread
+
+  const loadDarkMode = async () => {
+    const savedDarkMode = await localforage.getItem<boolean>("darkMode");
+    if (!ignore) {
+      setDarkMode(savedDarkMode ?? false);
+    }
+  };
+
+  loadDarkMode();
+
+  return () => {
+    ignore = true; // bottom bread
+  };
+}, []);
+
 //
 // Other (not hooks)...
 //
@@ -75,8 +93,9 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
           <input 
             type="checkbox" 
             onClick={
-              () => {
-                setDarkMode(!darkMode);
+              async () => {
+                const savedDarkMode = await localforage.setItem("darkMode", !darkMode);
+                setDarkMode(savedDarkMode);
               }
             }
           />
