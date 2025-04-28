@@ -60,6 +60,10 @@ export const Home: React.FC<HomeProps> = ({
                                   <td>Longest Game</td>
                                   <th> { generalFacts.longestGame } </th>
                                 </tr>
+                                <tr>
+                                  <td>AVG Turns per Game</td>
+                                  <th> { generalFacts.avgTurnsPerGame } </th>
+                                </tr>
                               </tbody>
                           </table>
                       </div>   
