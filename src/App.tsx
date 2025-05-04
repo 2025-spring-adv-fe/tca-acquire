@@ -57,16 +57,33 @@ const [darkMode, setDarkMode] = useState(false);
 const [emailOnModal, setEmailOnModal] = useState("");
 
 useEffect(() => {
-  let ignore = false; // top bread
 
   const loadDarkMode = async () => {
-    const savedDarkMode = await localforage.getItem<boolean>("darkMode");
+    const savedDarkMode = await localforage.getItem<boolean>("darkMode") ?? false;
     if (!ignore) {
-      setDarkMode(savedDarkMode ?? false);
+      setDarkMode(savedDarkMode);
     }
   };
 
+  let ignore = false; // top bread
   loadDarkMode();
+
+  return () => {
+    ignore = true; // bottom bread
+  };
+}, []);
+
+useEffect(() => {
+
+  const loadEmail = async () => {
+    const savedEmail = await localforage.getItem<string>("email") ?? "";
+    if (!ignore) {
+      setEmailOnModal(savedEmail);
+    }
+  };
+
+  let ignore = false; // top bread
+  loadEmail();
 
   return () => {
     ignore = true; // bottom bread
@@ -159,7 +176,15 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Save</button>
+              <button 
+                className="btn"
+                onClick={async () => {
+                  await localforage.setItem("email", emailOnModal);
+                  }
+                }
+              >
+                Save
+              </button>
             </form>
           </div>
         </div>
