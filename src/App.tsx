@@ -54,6 +54,8 @@ const [currentPlayers, setCurrentPlayers] = useState<string[]>(["Barbie", "Ken"]
 
 const [darkMode, setDarkMode] = useState(false);
 
+const [emailOnModal, setEmailOnModal] = useState("");
+
 useEffect(() => {
   let ignore = false; // top bread
 
@@ -143,11 +145,21 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
       >
         <div className="modal-box">
           <h3 className="font-bold text-lg">Enter email to load & save games...</h3>
-          <p className="py-4">Press ESC key or click the button below to close</p>
+          <p className="py-4">
+          <input 
+                type="text" 
+                placeholder="Enter email address here" 
+                className="input"
+                value={emailOnModal}
+                onChange={
+                  (e) => setEmailOnModal(e.target.value)
+                }
+              />
+          </p>
           <div className="modal-action">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Close</button>
+              <button className="btn">Save</button>
             </form>
           </div>
         </div>
