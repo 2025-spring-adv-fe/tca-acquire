@@ -114,7 +114,7 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
           {
             AppTitle === title && (
               <button 
-                className="btn"
+                className="btn btn-ghost"
                 onClick={
                   () => emailModlalRef.current?.showModal()
                 }
