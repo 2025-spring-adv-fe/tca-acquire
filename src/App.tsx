@@ -12,30 +12,6 @@ import localforage from "localforage";
 import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers, getGamesByMonth } from "./GameResults";
 import { saveGameToCloud, loadGamesFromCloud } from './tca-cloud-api'
 
-const dummyGameResults: GameResult[] = [
-  {
-    winner: "Hermione",
-    players: ["Hermione", "Harry", "Ron"],
-    start: "2025-04-01T19:20:49.248Z",
-    end: "2025-04-01T19:40:49.248Z",
-    turnCount: 29
-  },
-  {
-    winner: "Ron",
-    players: ["Hermione", "Ron"],
-    start: "2025-04-01T19:20:49.248Z",
-    end: "2025-04-01T19:50:49.248Z",
-    turnCount: 34
-  },
-  {
-    winner: "Harry",
-    players: ["Harry", "Ron"],
-    start: "2025-04-02T15:00:00.000Z",
-    end: "2025-04-02T15:30:00.000Z",
-    turnCount: 49
-  }
-];
-
 const App = () => {
 
 //
@@ -45,7 +21,7 @@ const App = () => {
 
 const emailModlalRef = useRef<HTMLDialogElement | null>(null);
 
-const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+const [gameResults, setGameResults] = useState<GameResult[]>([]);
 //const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
 
@@ -96,6 +72,34 @@ useEffect(() => {
     ignore = true; // bottom bread
   };
 }, []);
+
+useEffect(() => {
+
+  const loadGameResults = async () => {
+
+    const savedGameResults = await loadGamesFromCloud(
+      emailForCloudApi
+      , "tca-acquire-25s"
+    );
+
+    if (!ignore) {
+      setGameResults(savedGameResults);
+    }
+  };
+
+  // Build Ignore Sandwich
+
+  // top bread
+  let ignore = false; 
+  
+  if (emailForCloudApi.length > 0) {
+    loadGameResults();
+  }
+  // bottom bread
+  return () => {
+    ignore = true; 
+  };
+}, [emailForCloudApi]);
 
 //
 // Other (not hooks)...

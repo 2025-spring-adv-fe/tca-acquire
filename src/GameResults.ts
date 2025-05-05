@@ -113,7 +113,7 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
 
   return {
       lastPlayed: `${formatLastPlayed(lastPlayedInMilliseconds)} ago`,
-      totalGames: 2,
+      totalGames: results.length,
       shortestGame: formatGameDuration(Math.min(...gameDurationsInMilliseconds)),
       longestGame: formatGameDuration(Math.max(...gameDurationsInMilliseconds)), 
       avgTurnsPerGame: (turnSum / results.length).toFixed(2)
