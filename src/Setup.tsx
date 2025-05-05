@@ -44,7 +44,7 @@ export const Setup: React.FC<SetupProps> = ({
     //
 
     const numberOfChosenPlayers = availablePlayers.filter(x=> x.checked).length;
-    const twoToSevenPlayersChosen = numberOfChosenPlayers>= 2 && numberOfChosenPlayers <= 7;
+    const twoToSixPlayersChosen = numberOfChosenPlayers>= 2 && numberOfChosenPlayers <= 6;
 
     const duplicatePlayerName = availablePlayers.some(
       x => x.name.toUpperCase() === newPlayerName.toUpperCase()
@@ -96,12 +96,12 @@ export const Setup: React.FC<SetupProps> = ({
                     );
                     nav("/play")}
                   }
-                  disabled={!twoToSevenPlayersChosen}
+                  disabled={!twoToSixPlayersChosen}
             >
                 {
-                  twoToSevenPlayersChosen
+                  twoToSixPlayersChosen
                   ? "Start Playing"
-                  : "Choose 2-7 Players"
+                  : "Choose 2-6 Players"
                 }
             </button>
 
