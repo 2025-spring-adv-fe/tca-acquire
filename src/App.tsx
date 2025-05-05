@@ -10,6 +10,7 @@ import { Play } from './Play';
 import { useEffect, useRef, useState } from "react";
 import localforage from "localforage";
 import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers, getGamesByMonth } from "./GameResults";
+import { saveGameToCloud, loadGamesFromCloud } from './tca-cloud-api'
 
 const dummyGameResults: GameResult[] = [
   {
@@ -56,6 +57,8 @@ const [darkMode, setDarkMode] = useState(false);
 
 const [emailOnModal, setEmailOnModal] = useState("");
 
+const [emailForCloudApi, setEmailForCloudApi] = useState("");
+
 useEffect(() => {
 
   const loadDarkMode = async () => {
@@ -79,6 +82,10 @@ useEffect(() => {
     const savedEmail = await localforage.getItem<string>("email") ?? "";
     if (!ignore) {
       setEmailOnModal(savedEmail);
+
+      if (savedEmail.length > 0) {
+        setEmailForCloudApi(savedEmail);
+      }
     }
   };
 
@@ -93,13 +100,27 @@ useEffect(() => {
 //
 // Other (not hooks)...
 //
-const addNewGameResult = (newGameResult: GameResult) => setGameResults(
-  [
-    ...gameResults
-    , newGameResult
-  ]
-);
-
+const addNewGameResult = async (
+  newGameResult: GameResult
+) => {
+  
+  // Save the game result to Cloud
+  if (emailForCloudApi.length > 0) {
+    await saveGameToCloud(
+      emailForCloudApi
+      , "tca-acquire-25s"
+      , newGameResult.end
+      , newGameResult
+    );
+  }
+  
+  setGameResults(
+      [
+        ...gameResults
+        , newGameResult
+      ]
+    );
+  };
 
   return (
     <div
@@ -186,8 +207,15 @@ const addNewGameResult = (newGameResult: GameResult) => setGameResults(
               {/* if there is a button in form, it will close the modal */}
               <button 
                 className="btn"
-                onClick={async () => {
-                  await localforage.setItem("email", emailOnModal);
+                onClick={
+                  async () => {
+                  const savedEmail = await localforage.setItem(
+                    "email", emailOnModal
+                    );
+                  
+                    if (savedEmail.length > 0) {
+                    setEmailForCloudApi(savedEmail);
+                    }
                   }
                 }
               >
