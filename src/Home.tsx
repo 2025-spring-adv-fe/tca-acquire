@@ -85,7 +85,7 @@ export const Home: React.FC<HomeProps> = ({
                                     <tr>
                                         <th>W</th>
                                         <th>L</th>
-                                        <th>AVG</th>
+                                        <th>AVERAGE</th>
                                         <th>PLAYER</th>
                                     </tr>
                                 </thead>
@@ -114,7 +114,7 @@ export const Home: React.FC<HomeProps> = ({
                                 <thead>
                                     <tr>
                                         <th>MONTH</th>
-                                        <th>Number OF GAMES</th>
+                                        <th>NUMBER OF GAMES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
