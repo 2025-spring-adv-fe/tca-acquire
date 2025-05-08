@@ -34,7 +34,7 @@ interface PlayProps {
   <h4 className="text-lg font-semibold">
     Turn # {turnNumber}
     <button 
-      className="btn btn xs-outline btn-light ml-4"
+      className="btn btn-soft btn-light ml-4"
       onClick={
         () => {
           setTurnNumber(turnNumber + 1)
@@ -73,6 +73,12 @@ interface PlayProps {
       )
     }
   </div>
+  <button
+            className="btn btn-soft mb-4 mt-4"
+            onClick={() => nav(-1)}
+          >            
+            Back
+          </button>
   </>
   );
 };
