@@ -160,6 +160,12 @@ export const Setup: React.FC<SetupProps> = ({
                 )
               }
             </div>
+            <button
+            className="btn btn-soft mb-4 mt-4"
+            onClick={() => nav(-1)}
+          >            
+            Back
+          </button>
         </>
     );
 };
