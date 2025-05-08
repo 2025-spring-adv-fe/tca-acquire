@@ -66,6 +66,22 @@ export const Home: React.FC<HomeProps> = ({
                                   <td>Average Turns per Game</td>
                                   <th> { generalFacts.avgTurnsPerGame } </th>
                                 </tr>
+                                <tr>
+                                <td>Largest Winning Hotel Chain</td>
+                                <th>
+                                {generalFacts.largestHotelChain.length > 0 ? (
+                                  <div className="mr-1">
+                                    {generalFacts.largestHotelChain.map(([chain, count]) => (
+                                      <div key={chain} className="capitalize">
+                                        {chain}: {count}
+                                      </div>
+                                    ))}
+                                  </div>
+                                ) : (
+                                  <span className="text-sm text-muted">None yet... play a game!</span>
+                                )}
+                              </th>
+                              </tr>
                               </tbody>
                           </table>
                       </div>   
