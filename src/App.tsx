@@ -9,8 +9,18 @@ import { Setup } from './Setup';
 import { Play } from './Play';
 import { useEffect, useRef, useState } from "react";
 import localforage from "localforage";
-import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers, getGamesByMonth } from "./GameResults";
+import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers, getGamesByMonth, computeHotelWinTally } from "./GameResults";
 import { saveGameToCloud, loadGamesFromCloud } from './tca-cloud-api'
+
+export const hotelNames = [
+  "American",
+  "Continental",
+  "Festival",
+  "Imperial",
+  "Luxor",
+  "Tower",
+  "Worldwide",
+];
 
 const App = () => {
 
@@ -27,7 +37,7 @@ const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
 const [title, setTitle] = useState(AppTitle);
 
-const [currentPlayers, setCurrentPlayers] = useState<string[]>(["Barbie", "Ken"]);
+const [currentPlayers, setCurrentPlayers] = useState<string[]>([]);
 
 const [darkMode, setDarkMode] = useState(false);
 
@@ -125,6 +135,8 @@ const addNewGameResult = async (
       ]
     );
   };
+
+  const hotelWinTally = computeHotelWinTally(gameResults);
 
   return (
     <div
@@ -246,6 +258,9 @@ const addNewGameResult = async (
                 }
                 gamesByMonthData={
                   getGamesByMonth(gameResults)
+                }
+                hotelWinTally={
+                  hotelWinTally
                 }
               />
             }

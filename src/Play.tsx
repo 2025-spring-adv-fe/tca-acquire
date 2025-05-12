@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { GameResult } from "./GameResults";
+import { hotelNames } from "./App";
 import React from "react";
 
 
@@ -29,6 +30,9 @@ interface PlayProps {
     new Date().toISOString()
   )
 
+  // State for the largest hotel...
+  const [selectedHotel, setSelectedHotel] = useState("");
+
   return(
   <>
   <h4 className="text-lg font-semibold">
@@ -45,8 +49,27 @@ interface PlayProps {
     </button>
   </h4>
 
+  <label htmlFor="largest-hotel" className="block mt-4 mb-2">
+  Largest Hotel Chain
+</label>
+<select
+  id="largest-hotel"
+  className="select select-bordered select-accent w-full max-w-sm focus:outline-none focus:ring-2 focus:ring-accent"
+  value={selectedHotel}
+  onChange={(e) => setSelectedHotel(e.target.value)}
+>
+  <option disabled value="">
+    -- Choose a hotel --
+  </option>
+  {hotelNames.map((hotel) => (
+    <option key={hotel} value={hotel}>
+      {hotel}
+    </option>
+  ))}
+</select>
+
   <div 
-    className="grid grid-cols2 gap-2 mt-4"
+    className="grid grid-cols-2 gap-2 mt-4"
   >
     {
       currentPlayers.map(
@@ -62,10 +85,12 @@ interface PlayProps {
                   ,start: startTimestamp
                   , end: new Date().toISOString()
                   , turnCount: turnNumber
+                  , largestHotel: selectedHotel
                 });
                 nav(-2)
               }
             }
+            disabled={selectedHotel === ""}
           >
             {x} Won
           </button>
@@ -75,9 +100,9 @@ interface PlayProps {
   </div>
   <button
     className="btn btn-soft mb-4 mt-4"
-    onClick={() => nav(-1)}
+    onClick={() => nav(-2)}
   >            
-    Back
+    Quit
   </button>
   </>
   );

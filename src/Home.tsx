@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router";
 import { GeneralFacts, LeaderboardEntry } from "./GameResults";
+import { hotelNames } from "./App";
 import React, { useEffect } from "react";
 
 export const AppTitle = "Acquire Companion App"
@@ -9,6 +10,7 @@ interface HomeProps {
     setTitle: (t: string) => void;
     generalFacts: GeneralFacts;
     gamesByMonthData: Array<[string, number]>;
+    hotelWinTally: Record<string, number>;
 }
 
 export const Home: React.FC<HomeProps> = ({
@@ -16,11 +18,8 @@ export const Home: React.FC<HomeProps> = ({
     setTitle
     , generalFacts
     , gamesByMonthData
+    , hotelWinTally
 }) => {
-
-  console.log(
-    generalFacts
-  );
 
   useEffect(
     () => setTitle(AppTitle)
@@ -65,6 +64,18 @@ export const Home: React.FC<HomeProps> = ({
                                 <tr>
                                   <td>Average Turns per Game</td>
                                   <th> { generalFacts.avgTurnsPerGame } </th>
+                                </tr>
+                                <tr>
+                                  <td>Largest Chain Wins</td>
+                                  <td>
+                                    <ul className="list-none font-bold">
+                                      {hotelNames.map(hotel => (
+                                        <li key={hotel}>
+                                          {hotel}: {hotelWinTally[hotel] ?? 0}
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  </td>
                                 </tr>
                               </tbody>
                           </table>

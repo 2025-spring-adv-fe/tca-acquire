@@ -1,4 +1,5 @@
 import { durationFormatter } from "human-readable";
+import { hotelNames } from "./App";
 
 const formatGameDuration = durationFormatter<string>();
 
@@ -19,6 +20,7 @@ export interface GameResult {
   start: string;
   end: string;
   turnCount: number;
+  largestHotel: string;
 };
 
 export interface LeaderboardEntry {
@@ -176,6 +178,22 @@ export const getGamesByMonth = (results: GameResult[]): Array<[string, number]> 
           , groupedStartMonths.get(x)?.length ?? 0
       ]
   );
+};
+
+export const computeHotelWinTally = (
+  results: GameResult[]
+): Record<string, number> => {
+  const initialTally = Object.fromEntries(
+    hotelNames.map(hotel => [hotel, 0])
+  );
+
+  return results.reduce((tally, result) => {
+    const hotel = result.largestHotel;
+    if (hotel && hotel in tally) {
+      tally[hotel] += 1;
+    }
+    return tally;
+  }, initialTally);
 };
 
 
