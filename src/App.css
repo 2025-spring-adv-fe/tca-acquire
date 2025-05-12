@@ -1,2 +1,47 @@
 @import "tailwindcss";
-@import "daisyui";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark;
+}
+
+/* Override the light theme with Acquire colors */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+
+  /* American (blue) */
+  --color-primary:          #3B82F6;
+  --color-primary-content:  #ffffff;
+
+  /* Continental (aqua) */
+  --color-secondary:        #06B6D4;
+  --color-secondary-content:#ffffff;
+
+  /* Festival (green) */
+  --color-accent:           #22C55E;
+  --color-accent-content:   #ffffff;
+
+  /* Imperial (pink) */
+  --color-info:             #EC4899;
+  --color-info-content:     #ffffff;
+
+  /* Tower (yellow) */
+  --color-warning:          #FACC15;
+  --color-warning-content:  #000000;
+
+  /* Luxor (red) */
+  --color-error:            #DC2626;
+  --color-error-content:    #ffffff;
+
+  /* Worldwide (brown) */
+  --color-success:          #92400E;
+  --color-success-content:  #ffffff;
+
+  /* Neutral & base surfaces */
+  --color-neutral:          #D1D5DB;  /* a soft grey for disabled/secondary UI  */
+  --color-neutral-content:  #1F2937;  /* dark text on neutral */
+
+  --color-base-100:         #fffae4;  /* default page background */
+  --color-base-200:         #F3F4F6;  /* slight elevation */
+  --color-base-300:         #E5E7EB;  /* deeper elevation */
+  --color-base-content:     #1F2937;  /* text on base surfaces */
+}
