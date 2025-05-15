@@ -1,14 +1,10 @@
 import { durationFormatter } from "human-readable";
-import { hotelNames } from "./App";
 
 const formatGameDuration = durationFormatter<string>();
 
 const formatLastPlayed = durationFormatter<string>({
   allowMultiples: ["y", "mo", "d"]
 });
-
-
-
 
 
 //
@@ -38,13 +34,56 @@ export interface GeneralFacts {
   avgTurnsPerGame: string;
 }
 
+// Array's as interfaces are confounding ? ? ?
+// export interface HotelChainData { 
+//   name: string
+//   , count: number
+// }[];
 
 
+export type HotelChainData = { 
+  name: string
+  , count: number
+}[];
+
+
+export const hotelNames = [
+  "American",
+  "Continental",
+  "Festival",
+  "Imperial",
+  "Luxor",
+  "Tower",
+  "Worldwide",
+];
 
 
 //
 // Exported Functions...
 //
+
+export const getLongestHotelChainData = (
+  results: GameResult[]
+): HotelChainData => {
+
+  const groupedByLongestHotelChain = Map.groupBy(
+    results 
+    , x => x.largestHotel
+  );
+
+  return hotelNames
+    .map(
+      x => ({
+        name: x
+        , count: groupedByLongestHotelChain.get(x)?.length ?? 0 
+      })
+    )
+    .sort(
+      (a, b) => b.count - a.count
+    )
+  ;
+};
+
 export const getLeaderboard = (
   results: GameResult[]
 ): LeaderboardEntry[] => 

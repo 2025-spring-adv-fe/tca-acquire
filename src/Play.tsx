@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { GameResult } from "./GameResults";
-import { hotelNames } from "./App";
+import { GameResult, hotelNames } from "./GameResults";
 import React from "react";
 
 
