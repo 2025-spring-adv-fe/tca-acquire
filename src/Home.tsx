@@ -3,7 +3,7 @@ import { GeneralFacts, LeaderboardEntry } from "./GameResults";
 import { hotelNames } from "./App";
 import React, { useEffect } from "react";
 
-export const AppTitle = "Acquire Companion App"
+export const AppTitle = "ACQUIRE: The Companion App"
 
 interface HomeProps {
     leaderboardData: LeaderboardEntry[];
@@ -66,12 +66,13 @@ export const Home: React.FC<HomeProps> = ({
                                   <th> { generalFacts.avgTurnsPerGame } </th>
                                 </tr>
                                 <tr>
-                                  <td>Largest Chain Wins</td>
+                                  <td className="align-top">Largest Chain Tally</td>
                                   <td>
-                                    <ul className="list-none font-bold">
+                                    <ul className="list-none font-bold space-y-2">
                                       {hotelNames.map(hotel => (
                                         <li key={hotel}>
-                                          {hotel}: {hotelWinTally[hotel] ?? 0}
+                                          {/* {hotel}: {hotelWinTally[hotel] || "No wins yet..."} */}
+                                          {hotel}: {hotelWinTally[hotel] || "No wins yet..."}
                                         </li>
                                       ))}
                                     </ul>

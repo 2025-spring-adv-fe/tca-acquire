@@ -144,7 +144,7 @@ const addNewGameResult = async (
       data-theme={darkMode ? "dark" : "light"}
     >
       <div className="navbar bg-base-300 shadow-lg overflow-x-hidden flex">
-        <h1 className="text-xl font-bold">
+        <h1 className="text-xl font-bold text-base-200 font-serif ">
           { title}
         </h1>
         <div className="flex gap-1 ml-auto">

@@ -80,11 +80,11 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
 
   if (results.length === 0) {
     return {
-      lastPlayed: "n/a"
+      lastPlayed: "N/A"
       , totalGames: 0
-      , shortestGame: "n/a"
-      , longestGame: "n/a"
-      , avgTurnsPerGame: ""
+      , shortestGame: "N/A"
+      , longestGame: "N/A"
+      , avgTurnsPerGame: "N/A"
     }
   }
 
@@ -189,9 +189,7 @@ export const computeHotelWinTally = (
 
   return results.reduce((tally, result) => {
     const hotel = result.largestHotel;
-    if (hotel && hotel in tally) {
       tally[hotel] += 1;
-    }
     return tally;
   }, initialTally);
 };

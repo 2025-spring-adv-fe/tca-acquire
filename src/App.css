@@ -1,6 +1,8 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Arvo:wght@400;700&display=swap");
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark;
+  --font-serif: "Arvo", serif;
 }
 
 /* Override the light theme with Acquire colors */
@@ -40,8 +42,8 @@
   --color-neutral:          #D1D5DB;  /* a soft grey for disabled/secondary UI  */
   --color-neutral-content:  #1F2937;  /* dark text on neutral */
 
-  --color-base-100:         #fffae4;  /* default page background */
-  --color-base-200:         #F3F4F6;  /* slight elevation */
-  --color-base-300:         #E5E7EB;  /* deeper elevation */
+  --color-base-100:         #FFFFFF;  /* default page background */
+  --color-base-200:         #f9f9bc;  
+  --color-base-300:         #2294bf;  
   --color-base-content:     #1F2937;  /* text on base surfaces */
 }

@@ -50,23 +50,23 @@ interface PlayProps {
   </h4>
 
   <label htmlFor="largest-hotel" className="block mt-4 mb-2">
-  Largest Hotel Chain
-</label>
-<select
-  id="largest-hotel"
-  className="select select-bordered select-accent w-full max-w-sm focus:outline-none focus:ring-2 focus:ring-accent"
-  value={selectedHotel}
-  onChange={(e) => setSelectedHotel(e.target.value)}
->
-  <option disabled value="">
-    -- Choose a hotel --
-  </option>
-  {hotelNames.map((hotel) => (
-    <option key={hotel} value={hotel}>
-      {hotel}
+    Largest Hotel Chain
+  </label>
+  <select
+    id="largest-hotel"
+    className="select select-bordered select-accent w-full max-w-sm focus:ring-2 focus:ring-accent"
+    value={selectedHotel}
+    onChange={(e) => setSelectedHotel(e.target.value)}
+  >
+    <option disabled value="">
+      -- Choose a hotel --
     </option>
-  ))}
-</select>
+      {hotelNames.map((hotel) => (
+        <option key={hotel} value={hotel}>
+          {hotel}
+        </option>
+    ))}
+  </select>
 
   <div 
     className="grid grid-cols-2 gap-2 mt-4"
